@@ -1,11 +1,13 @@
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
 import styles from './app.module.css';
-import NxWelcome from './nx-welcome';
+import Weather from './weather'
+import LocationCard from './locationCard'
 
 export function App() {
   return (
     <>
-      <NxWelcome title="weathertest" />
+      <Weather />
+      <LocationCard />
       <div />
     </>
   );

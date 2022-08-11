@@ -12,6 +12,7 @@
         "outputPath": "dist/apps/weathertest",
         "index": "apps/weathertest/src/index.html",
         "baseHref": "/",
+        "postcssConfig": "apps/weathertest/postcss.config.js",
         "main": "apps/weathertest/src/main.tsx",
         "polyfills": "apps/weathertest/src/polyfills.ts",
         "tsConfig": "apps/weathertest/tsconfig.app.json",
