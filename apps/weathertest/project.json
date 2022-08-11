@@ -1,0 +1,83 @@
+{
+  "$schema": "../../node_modules/nx/schemas/project-schema.json",
+  "sourceRoot": "apps/weathertest/src",
+  "projectType": "application",
+  "targets": {
+    "build": {
+      "executor": "@nrwl/web:webpack",
+      "outputs": ["{options.outputPath}"],
+      "defaultConfiguration": "production",
+      "options": {
+        "compiler": "babel",
+        "outputPath": "dist/apps/weathertest",
+        "index": "apps/weathertest/src/index.html",
+        "baseHref": "/",
+        "main": "apps/weathertest/src/main.tsx",
+        "polyfills": "apps/weathertest/src/polyfills.ts",
+        "tsConfig": "apps/weathertest/tsconfig.app.json",
+        "assets": [
+          "apps/weathertest/src/favicon.ico",
+          "apps/weathertest/src/assets"
+        ],
+        "styles": ["apps/weathertest/src/styles.css"],
+        "scripts": [],
+        "webpackConfig": "@nrwl/react/plugins/webpack"
+      },
+      "configurations": {
+        "development": {
+          "extractLicenses": false,
+          "optimization": false,
+          "sourceMap": true,
+          "vendorChunk": true
+        },
+        "production": {
+          "fileReplacements": [
+            {
+              "replace": "apps/weathertest/src/environments/environment.ts",
+              "with": "apps/weathertest/src/environments/environment.prod.ts"
+            }
+          ],
+          "optimization": true,
+          "outputHashing": "all",
+          "sourceMap": false,
+          "namedChunks": false,
+          "extractLicenses": true,
+          "vendorChunk": false
+        }
+      }
+    },
+    "serve": {
+      "executor": "@nrwl/web:dev-server",
+      "defaultConfiguration": "development",
+      "options": {
+        "buildTarget": "weathertest:build",
+        "hmr": true
+      },
+      "configurations": {
+        "development": {
+          "buildTarget": "weathertest:build:development"
+        },
+        "production": {
+          "buildTarget": "weathertest:build:production",
+          "hmr": false
+        }
+      }
+    },
+    "lint": {
+      "executor": "@nrwl/linter:eslint",
+      "outputs": ["{options.outputFile}"],
+      "options": {
+        "lintFilePatterns": ["apps/weathertest/**/*.{ts,tsx,js,jsx}"]
+      }
+    },
+    "test": {
+      "executor": "@nrwl/jest:jest",
+      "outputs": ["coverage/apps/weathertest"],
+      "options": {
+        "jestConfig": "apps/weathertest/jest.config.ts",
+        "passWithNoTests": true
+      }
+    }
+  },
+  "tags": []
+}
