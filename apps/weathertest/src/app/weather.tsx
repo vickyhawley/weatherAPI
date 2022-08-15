@@ -1,5 +1,6 @@
 import React from 'react'
 import './weather.css'
+import DataFetching from '@weather/weather';
 
 const Weather = () => {
     return (
@@ -14,6 +15,7 @@ const Weather = () => {
                     <label htmlFor="name"><h1 className='header' >Enter Location</h1></label>
                     <input className='container shadow rounded' type='text' id='name' name='name' required></input>
                 </div>
+              <DataFetching />
             </div>
         </div>
 
