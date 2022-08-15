@@ -1,6 +1,7 @@
 import React from 'react'
 import './weather.css'
 import DataFetching from '@weather/weather';
+import api from '@weather/api';
 
 const Weather = () => {
     return (

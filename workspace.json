@@ -3,7 +3,6 @@
   "version": 2,
   "projects": {
     "api": "libs/api",
-    "weather": "libs/weather",
     "weathertest": "apps/weathertest",
     "weathertest-e2e": "apps/weathertest-e2e"
   }

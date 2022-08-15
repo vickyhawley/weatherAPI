@@ -15,8 +15,7 @@
     "skipDefaultLibCheck": true,
     "baseUrl": ".",
     "paths": {
-      "@weather/api": ["libs/api/src/index.ts"],
-      "@weather/weather": ["libs/weather/src/index.ts"]
+      "@weather/api": ["libs/api/src/index.ts"]
     }
   },
   "exclude": ["node_modules", "tmp"]
