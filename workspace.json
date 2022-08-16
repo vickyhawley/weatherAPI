@@ -3,6 +3,8 @@
   "version": 2,
   "projects": {
     "api": "libs/api",
+    "weathermobile": "apps/weathermobile",
+    "weathermobile-e2e": "apps/weathermobile-e2e",
     "weathertest": "apps/weathertest",
     "weathertest-e2e": "apps/weathertest-e2e"
   }
