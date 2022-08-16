@@ -76,6 +76,9 @@
       padding-right: 1rem;
       color: rgba(55, 65, 81, 1);
       width: 100%;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
     }
     .main {
       background-image: url('https://images.unsplash.com/photo-1509475248198-5dc930abd885?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=784&q=80');
@@ -85,43 +88,25 @@
       background-position: cover;
       margin-top: 10%;
       padding-top: 50px;
+      display: flex;
+      justify-content: center;
     }
    input:focus {
     border: 3px solid #555;
    }
-
-   button, input, optgroup, select, textarea {
-    padding: 20px;
-    font-size: 28px;
-    font-family: helvetica;
-    outline: none;
-    height: 70px;
-   }
+.date {
+  font-size: 20px;
+  font-weight:200;
+}
     .title {
       text-align: center;
       display: flex;
       color: white;
       margin-bottom: 35px;
       margin-top: 10px;
-      background-color: #f3ec78;
-    background-image: linear-gradient(45deg, #FF232A 16.666%, 
-    #FF3900 16.666%, 
-    #FF3900 33.333%, 
-    #FF6F00 33.333%, 
-    #FF6F00 50%, 
-    #C2FF00 50%, 
-    #C2FF00 66.666%, 
-    #5A8DFF 66.666%, 
-    #5A8DFF 83.333%, 
-    #FF56EA 83.333%);
-    background-size: 100%;
-    -webkit-background-clip: text;
-    -moz-background-clip: text;
-    -webkit-text-fill-color: transparent; 
-    -moz-text-fill-color: transparent;
       font-weight: 800;
       font-size: 48px;
-      margin-left: auto;
+      justify-content: center;
     }
     
     .header {
@@ -163,6 +148,74 @@
       font-size: 1.5rem;
       line-height: 2rem;
       position: relative;
+    }
+    .weather-box {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      background-color: rgba(0, 0, 0, 0.6);
+      width: 600px;
+      border-radius: 20px;
+      padding: 50px;
+      margin-top: 50px;
+    }
+    .display {
+      font-weight: 700;
+      font-size: 40px;
+      text-align: center;
+      color: white;
+    }
+    .weather {
+      text-align: center;
+      color: white;
+      font-size: 24px;
+      font-weight: 00;
+    }
+    .temp {
+      text-align: center;
+      color: white;
+      font-size: 24px;
+      font-weight: 400;
+    }
+    .userInput {
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+      justify-content: space-evenly;
+    }
+
+    .submitBtn {
+      color: white;
+      border-radius: 15px;
+      border: 2px solid white;
+
+      background: linear-gradient(45deg, #FF232A 16.666%, 
+    #FF6F00 33.333%, 
+    #FF6F00 50%, 
+    #5A8DFF 66.666%,  
+    #FF56EA 83.333%);
+    margin-left: -10px;
+    padding: 10px;
+    text-align: center;
+
+    }
+    .input {
+      text-align: center;
+    }
+    input[type='text']{
+      height: 60px;
+      width: 400px;
+      background: #e7e7e7;
+      padding: 10px 10px
+    }
+
+    input[type='Submit']{
+      width: 150px;
+      border: none;
+      font-weight: 700;
+      font-size: 28px;
+      text-align: center;
+      padding-left: 25px;
     }
     #hero .text-container h2 svg {
       color: hsla(162, 47%, 50%, 1);
@@ -277,7 +330,6 @@
     }
     #other-links {}
     .button-pill {
-      padding: 1.5rem 2rem;
       transition-duration: 300ms;
       transition-property: background-color, border-color, color, fill, stroke,
       opacity, box-shadow, transform, filter, backdrop-filter,
