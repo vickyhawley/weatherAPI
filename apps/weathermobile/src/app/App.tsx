@@ -1,5 +1,5 @@
 /* eslint-disable jsx-a11y/accessible-emoji */
-import React, { useRef, useState } from 'react';
+import React, {  useRef, useState } from 'react';
 import {
   SafeAreaView,
   StyleSheet,
@@ -18,12 +18,15 @@ import { WeatherData } from '@weather/api';
 
 export const App = () => {
   const scrollViewRef = useRef<null | ScrollView>(null);
+ 
   const api = {
     key:'45185b5e8a7f944eef598a5d36fde903',
     base: 'https://api.openweathermap.org/data/2.5/'
   }
   const [query, setQuery] = useState('');
+
   const [weather, setWeather] = useState<WeatherData | null>(null);
+
 
   const image= {uri: 'https://images.unsplash.com/photo-1509475248198-5dc930abd885?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=784&q=80'}
   const search = evt => {
@@ -38,12 +41,12 @@ export const App = () => {
 }
 }
 const dateBuilder = (d) => {
-  let months = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
-  let days = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
-  let day=days[d.getDay()];
-  let date = d.getDate();
-  let month = months[d.getMonth()];
-  let year = d.getFullYear();
+  const months = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
+  const days = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
+  const day=days[d.getDay()];
+  const date = d.getDate();
+  const month = months[d.getMonth()];
+  const year = d.getFullYear();
 
   return `${day} ${date} ${month} ${year}`
 }
@@ -52,19 +55,17 @@ const dateBuilder = (d) => {
     <>
       <StatusBar barStyle="dark-content" />
       <SafeAreaView>
-        <ScrollView
-          ref={(ref) => {
+        <ScrollView ref={(ref) => {
             scrollViewRef.current = ref;
           }}
           contentInsetAdjustmentBehavior="automatic"
-          style={styles.scrollView}
-        >
-          <View style={[styles.section, styles.rounded, styles.main]}>
+          style={styles.scrollView}>
+          
             <ImageBackground source={image} style={[styles.image, styles.main, styles.rounded]}>
+            <View style={[styles.section]}>
           <Text style={[styles.title]} >What's the weather like?</Text>
-          <View style={styles.container}>
-            <View style={styles.userInput}>
-            <TextInput defaultValue={query} placeholder='Enter a city' onChangeText={(e)=> setQuery(e)}
+          <View style={[styles.container, styles.userInput]}>
+            <TextInput style={{color: 'black'}} defaultValue={query} placeholder='Enter a city' placeholderTextColor='#0000' onChangeText={(e)=> setQuery(e)}
                   onKeyPress={search}
                    ></TextInput>
             </View>
@@ -72,17 +73,19 @@ const dateBuilder = (d) => {
             <View style={[styles.weatherBox, styles.container]}>
               <Text>{weather.main.temp}, {weather.sys.country}</Text>
                   <Text style={[styles.date]}>{dateBuilder(new Date())}</Text>
-            </View>)
-            : ('')}
+            
+               <Text style={styles.temp}>{Math.round(weather.main.temp)}°C</Text>
+              <Text style={styles.weather}>{weather.weather[0].main}</Text>
+            </View>) : <></>}
 
-          </View>
-          </ImageBackground>
-           
+
             </View>
             <View style={[styles.listItem, styles.love]}>
               <Text style={styles.textSubtle}>Carefully crafted with </Text>
               <Heart width={24} height={24} fill="rgba(252, 165, 165, 1)" />
             </View>
+          </ImageBackground>
+            
         </ScrollView>
       </SafeAreaView>
     </>
@@ -120,14 +123,18 @@ const styles = StyleSheet.create({
   },
   userInput: {
     display: 'flex',
+    fontSize: 32,
     flexDirection: 'row',
     alignItems: 'center',
     justifyContent: 'center',
     padding: 10,
-    backgroundColor: 'yellow',
-    borderRadius: 30,
+    backgroundColor: 'white',
+    borderRadius: 20,
+    borderColor: 'yellow',
+    borderWidth: 2,
     color: 'black',
-    width: 300
+    width: 300,
+    marginVertical: 50
   },
   submitBtn: {
     color: 'black',
@@ -176,10 +183,16 @@ const styles = StyleSheet.create({
     padding: 50,
     marginTop: 50,
   },
+  weather: {
+    textAlign: 'center',
+      color: 'white',
+      fontSize: 32,
+      fontWeight: '600'
+  },
   image: {
     flex: 1,
     resizeMode: 'cover',
-    justifyContent: 'center',
+    marginHorizontal: 30
   },
   main: {
     backgroundImage: "url('https://images.unsplash.com/photo-1509475248198-5dc930abd885?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=784&q=80')",
@@ -191,6 +204,12 @@ const styles = StyleSheet.create({
     paddingTop: 50,
     display: 'flex',
     justifyContent: 'center',
+  },
+  temp: {
+    textAlign: 'center',
+      color: 'white',
+      fontSize: 64,
+      fontWeight: '800'
   },
   codeBlock: {
     backgroundColor: 'rgba(55, 65, 81, 1)',

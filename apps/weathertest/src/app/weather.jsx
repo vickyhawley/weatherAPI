@@ -9,6 +9,7 @@ const api = {
 const Weather = () => {
     const [query, setQuery] = useState('');
     const [weather, setWeather] = useState({});
+    
 
     const search = evt => {
         if (evt.key === 'Enter'){
