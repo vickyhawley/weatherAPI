@@ -9,6 +9,7 @@
     "react": "*",
     "react-native": "*",
     "react-native-config": "*",
-    "react-native-svg": "*"
+    "react-native-svg": "*",
+    "react-native-linear-gradient": "*"
   }
 }

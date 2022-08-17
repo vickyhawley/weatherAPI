@@ -50,7 +50,7 @@ const Weather = () => {
                     value={query}
                     onKeyPress={search}
                      required></input>
-                    <input className='submitBtn button-pill' type='submit' value='Submit'></input>
+                    <input className='submitBtn button-pill' type='submit' value='Submit' onClick={search}></input>
                 </div>
 
                 { weather ? (<div className="weather-box container">

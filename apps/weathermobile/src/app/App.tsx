@@ -10,8 +10,8 @@ import {
   TextInput,
   ScrollView
 } from 'react-native';
-import LinearGradient from 'react-native-linear-gradient';
 
+import LinearGradient from 'react-native-linear-gradient';
 import Heart from './icons/heart.svg';
 
 import { WeatherData } from '@weather/api';
@@ -62,8 +62,11 @@ const dateBuilder = (d) => {
                       onKeyPress={search}
                        ></TextInput>
                  </View>
-                 <LinearGradient colors={['#4c669f', '#3b5998', '#192f6a']} style={styles.linearGradient}><Pressable style={styles.submitBtn} onPress={onPress}>
-      <Text style={styles.temp}>Submit</Text>
+                 <LinearGradient colors={['#FF232A', 
+      '#FF6F00', 
+      '#5A8DFF',  
+      '#FF56EA']} style={styles.linearGradient}><Pressable style={styles.submitBtn} onPress={onPress}>
+      <Text style={styles.btn}>Submit</Text>
     </Pressable></LinearGradient>
             {weather ? (
             <View style={[styles.weatherBox, styles.container]}>
@@ -141,11 +144,8 @@ const styles = StyleSheet.create({
   },
   submitBtn: {
     color: 'black',
-    fontWeight: '600',
+    fontWeight: '500',
     borderRadius: 15,
-    borderWidth: 2,
-    borderColor: 'white',
-    backgroundColor: 'yellow',
   marginLeft: -10,
   padding: 10,
   textAlign: 'center',
@@ -216,6 +216,12 @@ const styles = StyleSheet.create({
       fontSize: 64,
       fontWeight: '800'
   },
+  btn: {
+    textAlign: 'center',
+      color: 'white',
+      fontSize: 32,
+      fontWeight: '600'
+  },
   codeBlock: {
     backgroundColor: 'rgba(55, 65, 81, 1)',
     marginVertical: 12,
@@ -274,7 +280,8 @@ const styles = StyleSheet.create({
   },
   section: {
     marginVertical: 24,
-    marginHorizontal: 22
+    marginHorizontal: 22,
+    paddingBottom: 100
   },
   shadowBox: {
     backgroundColor: 'white',
