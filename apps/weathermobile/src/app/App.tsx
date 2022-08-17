@@ -1,24 +1,22 @@
 /* eslint-disable jsx-a11y/accessible-emoji */
-import React, {  useRef, useState } from 'react';
+import React, { useState } from 'react';
 import {
-  SafeAreaView,
+  Pressable,
   StyleSheet,
-  ScrollView,
   View,
   Text,
   StatusBar,
   ImageBackground,
-  TextInput
+  TextInput,
+  ScrollView
 } from 'react-native';
-
+import LinearGradient from 'react-native-linear-gradient';
 
 import Heart from './icons/heart.svg';
 
 import { WeatherData } from '@weather/api';
 
-export const App = () => {
-  const scrollViewRef = useRef<null | ScrollView>(null);
- 
+export const App = (props) => {
   const api = {
     key:'45185b5e8a7f944eef598a5d36fde903',
     base: 'https://api.openweathermap.org/data/2.5/'
@@ -26,7 +24,7 @@ export const App = () => {
   const [query, setQuery] = useState('');
 
   const [weather, setWeather] = useState<WeatherData | null>(null);
-
+  const { onPress } = props;
 
   const image= {uri: 'https://images.unsplash.com/photo-1509475248198-5dc930abd885?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=784&q=80'}
   const search = evt => {
@@ -52,23 +50,21 @@ const dateBuilder = (d) => {
 }
 
   return (
-    <>
-      <StatusBar barStyle="dark-content" />
-      <SafeAreaView>
-        <ScrollView ref={(ref) => {
-            scrollViewRef.current = ref;
-          }}
-          contentInsetAdjustmentBehavior="automatic"
+        <ScrollView
           style={styles.scrollView}>
-          
-            <ImageBackground source={image} style={[styles.image, styles.main, styles.rounded]}>
+           <StatusBar barStyle="dark-content" />
+           <View style={{display: 'flex', alignItems: 'center'}}>
+            <ImageBackground source={image} style={[styles.image, styles.main]} imageStyle={{ borderRadius: 30}} >
             <View style={[styles.section]}>
-          <Text style={[styles.title]} >What's the weather like?</Text>
-          <View style={[styles.container, styles.userInput]}>
-            <TextInput style={{color: 'black'}} defaultValue={query} placeholder='Enter a city' placeholderTextColor='#0000' onChangeText={(e)=> setQuery(e)}
-                  onKeyPress={search}
-                   ></TextInput>
-            </View>
+                  <Text style={[styles.title]} >What's the weather like?</Text>
+                 <View style={[styles.container, styles.userInput]}>
+                      <TextInput style={{color: 'black', marginBottom: 50}} defaultValue={query} placeholder='Enter a city' placeholderTextColor='#0000' onChangeText={(e)=> setQuery(e)}
+                      onKeyPress={search}
+                       ></TextInput>
+                 </View>
+                 <LinearGradient colors={['#4c669f', '#3b5998', '#192f6a']} style={styles.linearGradient}><Pressable style={styles.submitBtn} onPress={onPress}>
+      <Text style={styles.temp}>Submit</Text>
+    </Pressable></LinearGradient>
             {weather ? (
             <View style={[styles.weatherBox, styles.container]}>
               <Text>{weather.main.temp}, {weather.sys.country}</Text>
@@ -80,20 +76,26 @@ const dateBuilder = (d) => {
 
 
             </View>
+            </ImageBackground>
+            </View>
             <View style={[styles.listItem, styles.love]}>
               <Text style={styles.textSubtle}>Carefully crafted with </Text>
               <Heart width={24} height={24} fill="rgba(252, 165, 165, 1)" />
             </View>
-          </ImageBackground>
             
         </ScrollView>
-      </SafeAreaView>
-    </>
   );
 };
 const styles = StyleSheet.create({
   scrollView: {
+    flex: 1,
     backgroundColor: '#ffffff',
+  },
+  linearGradient: {
+    flex: 1,
+    paddingLeft: 15,
+    paddingRight: 15,
+    borderRadius: 5
   },
   date: {
     fontSize: 20,
@@ -124,17 +126,18 @@ const styles = StyleSheet.create({
   userInput: {
     display: 'flex',
     fontSize: 32,
-    flexDirection: 'row',
+    flexDirection: 'column',
     alignItems: 'center',
     justifyContent: 'center',
     padding: 10,
     backgroundColor: 'white',
     borderRadius: 20,
-    borderColor: 'yellow',
+    borderColor: 'white',
     borderWidth: 2,
     color: 'black',
-    width: 300,
-    marginVertical: 50
+    width: 270,
+    marginBottom: 50,
+    marginHorizontal: 20
   },
   submitBtn: {
     color: 'black',
@@ -192,7 +195,8 @@ const styles = StyleSheet.create({
   image: {
     flex: 1,
     resizeMode: 'cover',
-    marginHorizontal: 30
+    marginHorizontal: 20,
+    paddingHorizontal: 30
   },
   main: {
     backgroundImage: "url('https://images.unsplash.com/photo-1509475248198-5dc930abd885?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=784&q=80')",
@@ -204,6 +208,7 @@ const styles = StyleSheet.create({
     paddingTop: 50,
     display: 'flex',
     justifyContent: 'center',
+    alignItems: 'center'
   },
   temp: {
     textAlign: 'center',
@@ -269,7 +274,7 @@ const styles = StyleSheet.create({
   },
   section: {
     marginVertical: 24,
-    marginHorizontal: 12,
+    marginHorizontal: 22
   },
   shadowBox: {
     backgroundColor: 'white',

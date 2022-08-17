@@ -1,6 +1,9 @@
 import React, { useState } from 'react'
 import './weather.css'
 
+
+import { WeatherData } from '@weather/api';
+
 const api = {
     key:'45185b5e8a7f944eef598a5d36fde903',
     base: 'https://api.openweathermap.org/data/2.5/'
@@ -8,7 +11,7 @@ const api = {
 
 const Weather = () => {
     const [query, setQuery] = useState('');
-    const [weather, setWeather] = useState({});
+    const [weather, setWeather] = useState<WeatherData | null>(null);
     
 
     const search = evt => {
@@ -25,12 +28,12 @@ const Weather = () => {
 
 
      const dateBuilder = (d) => {
-        let months = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
-        let days = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
-        let day=days[d.getDay()];
-        let date = d.getDate();
-        let month = months[d.getMonth()];
-        let year = d.getFullYear();
+        const months = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
+        const days = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
+        const day=days[d.getDay()];
+        const date = d.getDate();
+        const month = months[d.getMonth()];
+        const year = d.getFullYear();
 
         return `${day} ${date} ${month} ${year}`
      }
@@ -50,7 +53,7 @@ const Weather = () => {
                     <input className='submitBtn button-pill' type='submit' value='Submit'></input>
                 </div>
 
-                {(typeof weather.main != "undefined") ? (<div className="weather-box container">
+                { weather ? (<div className="weather-box container">
                 <div className='display'>
                     <div className="location">{weather.name}, {weather.sys.country}</div>
                     <div className="date">{dateBuilder(new Date())}</div>
